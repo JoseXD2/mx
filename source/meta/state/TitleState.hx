@@ -86,7 +86,7 @@ class TitleState extends MusicBeatState
 			// */
 		}
 
-		#if !html5
+		#if windows
 		Discord.changePresence('TITLE SCREEN', 'Main Menu');
 		#end
 
