@@ -211,6 +211,10 @@ class MainMenuState extends MusicBeatState
 
 		changeSelection();
 
+		#if mobile
+		addVirtualPad(UP_DOWN, A_B);
+		#end
+			
 		allCompleted = true;
 		for (i in 0...Main.gameWeeks.length)
 		{
