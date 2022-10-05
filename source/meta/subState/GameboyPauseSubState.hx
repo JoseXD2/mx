@@ -164,6 +164,10 @@ class GameboyPauseSubState extends MusicBeatSubState
 		#if debug
 		// trace('cameras done');
 		#end
+			
+		#if mobile
+		addVirtualPad(UP_DOWN, A);
+		#end	
 	}
 
 	override function update(elapsed:Float)
