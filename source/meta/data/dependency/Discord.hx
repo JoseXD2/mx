@@ -1,6 +1,6 @@
 package meta.data.dependency;
 
-#if !html5
+#if windows
 import discord_rpc.DiscordRpc;
 #end
 import lime.app.Application;
@@ -11,7 +11,7 @@ import lime.app.Application;
 **/
 class Discord
 {
-	#if !html5
+	#if windows
 	// set up the rich presence initially
 	public static function initializeRPC()
 	{
@@ -56,7 +56,7 @@ class Discord
 		if (endTimestamp > 0)
 			endTimestamp = startTimestamp + endTimestamp;
 
-		DiscordRpc.presence({
+		        DiscordRpc.presence({
 			details: details,
 			state: state,
 			largeImageKey: 'iconog',
