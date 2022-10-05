@@ -592,6 +592,11 @@ class PlayState extends MusicBeatState
 		dialogueHUD.bgColor.alpha = 0;
 		FlxG.cameras.add(dialogueHUD);
 
+		#if mobile
+		addMobileControls();
+		mobileControls.visible = false;
+		#end
+			
 		verticalBridge =  new FlxSprite(96 * 6, 50 * 6).loadGraphic(Paths.image("UI/default/mari0/bridge-vertical"), true, 24, 120);
 		verticalBridge.animation.add("idle", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34], 9, true);
 		verticalBridge.animation.play("idle");
@@ -646,6 +651,8 @@ class PlayState extends MusicBeatState
 		marioTarget = new FlxPoint(boyfriend.x, boyfriend.y);
 		groundPos = boyfriend.y;
 
+		
+			
 		// call the funny intro cutscene depending on the song
 		if (!skipCutscenes())
 			songIntroCutscene();
@@ -2057,7 +2064,7 @@ class PlayState extends MusicBeatState
 
 	public static function updateRPC(pausedRPC:Bool)
 	{
-		#if !html5
+		#if windows
 		var displayRPC:String = (pausedRPC) ? detailsPausedText : songDetails.toUpperCase();
 
 		if (health > 0 && gbHealth > 0)
@@ -2448,11 +2455,11 @@ class PlayState extends MusicBeatState
 			powerupVisuals("idle");
 		}
 
-		songMusic = new FlxSound().loadEmbedded(Sound.fromFile('./' + Paths.inst(SONG.song)), false, true);
+		songMusic = new FlxSound().loadEmbedded(Paths.inst(SONG.song), false, true);
 		songMusic.volume = 0.75;
 
 		if (SONG.needsVoices)
-			vocals = new FlxSound().loadEmbedded(Sound.fromFile('./' + Paths.voices(SONG.song)), false, true);
+			vocals = new FlxSound().loadEmbedded(Paths.voices(SONG.song), false, true);
 		else
 			vocals = new FlxSound();
 		vocals.volume = 0.75;
@@ -2466,6 +2473,7 @@ class PlayState extends MusicBeatState
 
 		// load external charts
 		// stole from shubs i am tird
+		#if windows
 		var existingCharts = CoolUtil.returnAssetsLibrary('external', 'assets/songs/' + SONG.song);
 		trace(existingCharts);
 
@@ -2481,7 +2489,7 @@ class PlayState extends MusicBeatState
 				secretFunnyCharts[i].sort(sortByShit);
 			}
 		}
-
+                #end
 		// sort through them
 		unspawnNotes.sort(sortByShit);
 		// give the game the heads up to be able to start
@@ -3010,7 +3018,8 @@ class PlayState extends MusicBeatState
 	private var endSongEvent:Bool = false;
 
 	function endSong():Void
-	{
+	{	
+		
 		canPause = false;
 		songMusic.volume = 0;
 		vocals.volume = 0;
