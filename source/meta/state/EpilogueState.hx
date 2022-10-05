@@ -59,10 +59,21 @@ class EpilogueState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
+		var pressedEnter:Bool = #if mobile || justTouched #end ;
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
+		#if android
+                var justTouched:Bool = false;
+
+		for (touch in FlxG.touches.list)
+		{
+			if (touch.justPressed)
+			{
+				justTouched = true;
+			}
+		}
+		#end
 		if (gamepad != null)
 		{
 			if (gamepad.justPressed.START)
