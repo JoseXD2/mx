@@ -85,6 +85,10 @@ class GameOverSubstate extends MusicBeatSubState
 		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
 		// FlxG.camera.scroll.set();
 		// FlxG.camera.target = null;
+		
+		#if mobile
+		addVirtualPad(NONE, A_B);
+		#end
 	}
 
 	override function update(elapsed:Float)
