@@ -131,6 +131,18 @@ enum KeyboardScheme
  */
 class Controls extends FlxActionSet
 {
+	var _ui_up = new FlxActionDigital(Action.UI_UP);
+	var _ui_left = new FlxActionDigital(Action.UI_LEFT);
+	var _ui_right = new FlxActionDigital(Action.UI_RIGHT);
+	var _ui_down = new FlxActionDigital(Action.UI_DOWN);
+	var _ui_upP = new FlxActionDigital(Action.UI_UP_P);
+	var _ui_leftP = new FlxActionDigital(Action.UI_LEFT_P);
+	var _ui_rightP = new FlxActionDigital(Action.UI_RIGHT_P);
+	var _ui_downP = new FlxActionDigital(Action.UI_DOWN_P);
+	var _ui_upR = new FlxActionDigital(Action.UI_UP_R);
+	var _ui_leftR = new FlxActionDigital(Action.UI_LEFT_R);
+	var _ui_rightR = new FlxActionDigital(Action.UI_RIGHT_R);
+	var _ui_downR = new FlxActionDigital(Action.UI_DOWN_R);
 	var _up = new FlxActionDigital(Action.UP);
 	var _left = new FlxActionDigital(Action.LEFT);
 	var _right = new FlxActionDigital(Action.RIGHT);
@@ -157,6 +169,67 @@ class Controls extends FlxActionSet
 
 	public var gamepadsAdded:Array<Int> = [];
 	public var keyboardScheme = KeyboardScheme.None;
+
+	public var UI_UP(get, never):Bool;
+
+	inline function get_UI_UP()
+		return _ui_up.check();
+
+	public var UI_LEFT(get, never):Bool;
+
+	inline function get_UI_LEFT()
+		return _ui_left.check();
+
+	public var UI_RIGHT(get, never):Bool;
+
+	inline function get_UI_RIGHT()
+		return _ui_right.check();
+
+	public var UI_DOWN(get, never):Bool;
+
+	inline function get_UI_DOWN()
+		return _ui_down.check();
+
+	public var UI_UP_P(get, never):Bool;
+
+	inline function get_UI_UP_P()
+		return _ui_upP.check();
+
+	public var UI_LEFT_P(get, never):Bool;
+
+	inline function get_UI_LEFT_P()
+		return _ui_leftP.check();
+
+	public var UI_RIGHT_P(get, never):Bool;
+
+	inline function get_UI_RIGHT_P()
+		return _ui_rightP.check();
+
+	public var UI_DOWN_P(get, never):Bool;
+
+	inline function get_UI_DOWN_P()
+		return _ui_downP.check();
+
+	public var UI_UP_R(get, never):Bool;
+
+	inline function get_UI_UP_R()
+		return _ui_upR.check();
+
+	public var UI_LEFT_R(get, never):Bool;
+
+	inline function get_UI_LEFT_R()
+		return _ui_leftR.check();
+
+	public var UI_RIGHT_R(get, never):Bool;
+
+	inline function get_UI_RIGHT_R()
+		return _ui_rightR.check();
+        public var UI_DOWN_R(get, never):Bool;
+
+	inline function get_UI_DOWN_R()
+		return _ui_downR.check();
+	
+	public var UI_DOWN_R(get, never):Bool;
 
 	public var UP(get, never):Bool;
 
@@ -260,6 +333,18 @@ class Controls extends FlxActionSet
 		add(_leftR);
 		add(_rightR);
 		add(_downR);
+		add(_ui_up);
+		add(_ui_left);
+		add(_ui_right);
+		add(_ui_down);
+		add(_ui_upP);
+		add(_ui_leftP);
+		add(_ui_rightP);
+		add(_ui_downP);
+		add(_ui_upR);
+		add(_ui_leftR);
+		add(_ui_rightR);
+		add(_ui_downR);
 		add(_accept);
 		add(_back);
 		add(_pause);
@@ -470,10 +555,15 @@ class Controls extends FlxActionSet
 	{
 		return switch (control)
 		{
+			
 			case UP: _up;
 			case DOWN: _down;
 			case LEFT: _left;
 			case RIGHT: _right;
+			case UI_UP: _ui_up;
+			case UI_DOWN: _ui_down;
+			case UI_LEFT: _ui_left;
+			case UI_RIGHT: _ui_right;
 			case ACCEPT: _accept;
 			case BACK: _back;
 			case PAUSE: _pause;
@@ -514,6 +604,23 @@ class Controls extends FlxActionSet
 				func(_down, PRESSED);
 				func(_downP, JUST_PRESSED);
 				func(_downR, JUST_RELEASED);
+			case UI_UP:
+				func(_ui_up, PRESSED);
+				func(_ui_upP, JUST_PRESSED);
+				func(_ui_upR, JUST_RELEASED);
+			case UI_LEFT:
+				func(_ui_left, PRESSED);
+				func(_ui_leftP, JUST_PRESSED);
+				func(_ui_leftR, JUST_RELEASED);
+			case UI_RIGHT:
+				func(_ui_right, PRESSED);
+				func(_ui_rightP, JUST_PRESSED);
+				func(_ui_rightR, JUST_RELEASED);
+			case UI_DOWN:
+				func(_ui_down, PRESSED);
+				func(_ui_downP, JUST_PRESSED);
+				func(_ui_downR, JUST_RELEASED);
+				
 			case ACCEPT:
 				func(_accept, JUST_PRESSED);
 			case BACK:
@@ -666,6 +773,10 @@ class Controls extends FlxActionSet
 		inline bindKeys(Control.DOWN, [Init.gameControls.get('DOWN')[0][0], Init.gameControls.get('DOWN')[0][1]]);
 		inline bindKeys(Control.LEFT, [Init.gameControls.get('LEFT')[0][0], Init.gameControls.get('LEFT')[0][1]]);
 		inline bindKeys(Control.RIGHT, [Init.gameControls.get('RIGHT')[0][0], Init.gameControls.get('RIGHT')[0][1]]);
+		inline bindKeys(Control.UI_UP, [Init.gameControls.get('UI_UP')[0][0], Init.gameControls.get('UI_UP')[0][1]]);
+		inline bindKeys(Control.UI_DOWN, [Init.gameControls.get('UI_DOWN')[0][0], Init.gameControls.get('UI_DOWN')[0][1]]);
+		inline bindKeys(Control.UI_LEFT, [Init.gameControls.get('UI_LEFT')[0][0], Init.gameControls.get('UI_LEFT')[0][1]]);
+		inline bindKeys(Control.UI_RIGHT, [Init.gameControls.get('UI_RIGHT')[0][0], Init.gameControls.get('UI_RIGHT')[0][1]]);
 		inline bindKeys(Control.ACCEPT, [
 			Init.gameControls.get('ACCEPT')[0][0],
 			Init.gameControls.get('ACCEPT')[0][1],
