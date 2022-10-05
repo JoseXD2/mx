@@ -113,7 +113,7 @@ class FreeplayState extends MusicBeatState
 		// LOAD MUSIC
 		ForeverTools.playFreeplayMusic();
 
-		#if !html5
+		#if windows
 		Discord.changePresence('FREEPLAY MENU', 'Main Menu');
 		#end
 
@@ -212,6 +212,10 @@ class FreeplayState extends MusicBeatState
 		selector.size = 40;
 		selector.text = ">";
 		// add(selector);
+		
+		#if mobile
+		addVirtualPad(LEFT_FULL, A_B);
+		#end
 	}
 
 	function addWeeks()
@@ -339,8 +343,8 @@ class FreeplayState extends MusicBeatState
 		///*
 		var coolDifficultyArray = [];
 		for (i in CoolUtil.difficultyArray)
-			if (FileSystem.exists(Paths.songJson(songName, songName + '-' + i))
-				|| (FileSystem.exists(Paths.songJson(songName, songName)) && i == "NORMAL"))
+			if (Assets.exists(Paths.songJson(songName, songName + '-' + i))
+				|| (Assets.exists(Paths.songJson(songName, songName)) && i == "NORMAL"))
 				coolDifficultyArray.push(i);
 
 		if (coolDifficultyArray.length > 0)
